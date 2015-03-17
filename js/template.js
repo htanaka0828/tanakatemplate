@@ -32,7 +32,7 @@ TanakaTemplate.prototype.init = function(arg, opt) {
 
 /**
  * オプション更新
- * @param {Object} arg .
+ * @param {Object} opt .
  */
 TanakaTemplate.prototype.setOpt = function(opt) {
   if(opt) {
