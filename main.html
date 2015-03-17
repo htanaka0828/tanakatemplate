@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<style>
+#template {
+  display: none;
+}
+</style>
+<script src='js/template.js'></script>
+</head>
+<body>
+
+<div id='target' align="center"></div>
+<script type='text/tanaka-template'>
+<div align="center">
+  <p>{{TITLE}}</p>
+  <p>{{DISCRIPTION}}</p>
+  <img src='{{IMG_SRC}}' width='300' height='250' />
+</div>
+</script>
+
+
+<script type='text/oreno-template'>
+<div align="center">
+  <p><<TITLE>></p>
+  <p><<DISCRIPTION>></p>
+  <img src='<<IMG_SRC>>' width='<<WIDTH>>' height='<<HEIGHT>>' />
+</div>
+</script>
+
+<script>
+  new TanakaTemplate(
+    {
+      TITLE: 'タイトルだよーん♪',
+      DISCRIPTION: '様々な事象について諸々を諸々するよね',
+      IMG_SRC: 'http://person-link.co.jp/img/logo.png'});
+</script>
+
+
+<script>
+var template2 = new TanakaTemplate();
+
+template2.setOpt({
+  type: 'text/oreno-template',
+  target: document.getElementById('target'),
+  befortag: '<<',
+  aftertag: '>>',
+});
+
+
+template2.run({
+  TITLE: '二つ目のタイトルだよーん♪',
+  DISCRIPTION: 'ふたつめのdiscriptionだよー',
+  IMG_SRC: 'http://person-link.co.jp/img/logo.png',
+  WIDTH: '300',
+  HEIGHT: '250'
+});
+</script>
+</body>
+</html>
+
