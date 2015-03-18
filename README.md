@@ -18,7 +18,7 @@
 </div>
 </script>
 ```
-プレースホルダは任意です。
+プレースホルダは任意のラベルを付ける事が出来ます。
 - newしてプレースホルダの値を渡してあげる
 ```javascript:index.js
 <script>
@@ -41,6 +41,16 @@ template2.setOpt({
   befortag: '<<',
   aftertag: '>>',
 });
+```
+- テンプレートも別で設定してみる
+```javascript:index.js
+<script type='text/oreno-template'>
+<div align="center">
+  <p><<TITLE>></p>
+  <p><<DISCRIPTION>></p>
+  <img src='<<IMG_SRC>>' width='<<WIDTH>>' height='<<HEIGHT>>' />
+</div>
+</script>
 ```
 - 最後にrunでパラメータを渡す
 ```javascript:index.js
