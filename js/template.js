@@ -9,6 +9,7 @@ var TanakaTemplate = function(arg) {
 
 
 /**
+ * @private
  * @param {Object} arg .
  * @param {Object=} opt .
  */
@@ -22,10 +23,10 @@ TanakaTemplate.prototype.init = function(arg, opt) {
     runFlg: true
   };
 
-  this.setOpt(opt);
+  this['setOpt'](opt);
 
   if(arg && this.opt.runFlg) {
-    this.run(arg);
+    this['run'](arg);
   }
 };
 
@@ -34,25 +35,28 @@ TanakaTemplate.prototype.init = function(arg, opt) {
  * オプション更新
  * @param {Object} opt .
  */
-TanakaTemplate.prototype.setOpt = function(opt) {
+TanakaTemplate.prototype['setOpt'] = function(opt) {
   if(opt) {
-    if(opt.type) {
-      this.opt.type = opt.type;
+    if(opt['type']) {
+      this.opt.type = opt['type'];
+      if(!opt['target']) {
+        this.opt.target = null;
+      }
     }
-    if(opt.template) {
-      this.opt.template = opt.template;
+    if(opt['template']) {
+      this.opt.template = opt['template'];
     }
-    if(opt.target) {
-      this.opt.target = opt.target;
+    if(opt['target']) {
+      this.opt.target = opt['target'];
     }
-    if(opt.befortag) {
-      this.opt.befortag = opt.befortag;
+    if(opt['befortag']) {
+      this.opt.befortag = opt['befortag'];
     }
-    if(opt.aftertag) {
-      this.opt.aftertag = opt.aftertag;
+    if(opt['aftertag']) {
+      this.opt.aftertag = opt['aftertag'];
     }
-    if(opt.runFlg) {
-      this.opt.runFlg = opt.runFlg;
+    if(opt['runFlg']) {
+      this.opt.runFlg = opt['runFlg'];
     }
   }
 }
@@ -62,7 +66,7 @@ TanakaTemplate.prototype.setOpt = function(opt) {
  * 書き出し実行
  * @param {Object} arg .
  */
-TanakaTemplate.prototype.run = function(arg) {
+TanakaTemplate.prototype['run'] = function(arg) {
   var template, elm;
   template = this._getTemplate();
   if(template && template.innerText) {
@@ -76,6 +80,7 @@ TanakaTemplate.prototype.run = function(arg) {
 
 /**
  * テンプレートエレメントの取得処理
+ * @private
  * @return {string}
  */
 TanakaTemplate.prototype._getTemplate = function() {
@@ -94,12 +99,14 @@ TanakaTemplate.prototype._getTemplate = function() {
   if(template.tagName !== 'SCRIPT') {
     template = null;
   }
+  this.opt.template = template;
   return template;
 };
 
 
 /**
  * テンプレートの変数置き換え処理
+ * @private
  * @param {string} template
  * @param {Object} arg
  * @return {Element}
@@ -116,6 +123,7 @@ TanakaTemplate.prototype._setTemplateValue = function(template, arg) {
 
 
 /**
+ * @private
  * @param {Element} elm .
  */
 TanakaTemplate.prototype._render = function(elm) {
